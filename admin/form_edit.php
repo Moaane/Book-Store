@@ -13,6 +13,7 @@ $title = $row['title'];
 $description = $row['description'];
 $rating = $row['rating'];
 $author = $row['author'];
+$created_time = $row['created_time'];
 
 
 
@@ -39,6 +40,10 @@ $author = $row['author'];
                         <div class="col-md-6">
                             <label class="form-label">Rating</label>
                             <input type="number" name="rating" value="<?=$rating;?>" class="form-control" id="inputPassword4" required="true">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Created TIme</label>
+                            <input type="date" name="created_time" value="<?=$created_time;?>" class="form-control" id="inputPassword4" required="true">
                         </div>
                         <div class="col-md-12">
                             <label class="form-label">Image</label>
@@ -67,12 +72,13 @@ if (isset($_POST['submit'])) {
     $description = $_POST['description'];
     $rating = $_POST['rating'];
     $author = $_POST['author'];
+    $created_time = $_POST['created_time'];
 
 
     $image_name = $_FILES['filename']['name'];
     $image_tmp  = $_FILES['filename']['tmp_name'];
 
-    $queryInsert = "UPDATE book SET title = '$title', description = '$description', rating = '$rating', author = '$author',
+    $queryInsert = "UPDATE book SET title = '$title', description = '$description', rating = '$rating', author = '$author', created_time = '$created_time',
     filename ='$image_name' WHERE id='$id'";
 
     move_uploaded_file($image_tmp,'img/'.$image_name);

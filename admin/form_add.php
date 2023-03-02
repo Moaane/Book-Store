@@ -24,6 +24,10 @@ require_once 'header.php';
                             <label for="inputEmail4" class="form-label">Rating</label>
                             <input type="text" name="rating" class="form-control" id="inputEmail4" required="true">
                         </div>
+                        <div class="col-md-6">
+                            <label for="inputEmail4" class="form-label">Created TIme</label>
+                            <input type="date" name="created_time" class="form-control" id="inputEmail4" required="true">
+                        </div>
                         <div class="col-md-12">
                             <label class="form-label">Image</label>
                             <input type="file" name="filename" class="form-control" id="inputPassword4" required="true">
@@ -51,13 +55,15 @@ if (isset($_POST['submit'])) {
     $description = $_POST['description'];
     $rating = $_POST['rating'];
     $author = $_POST['author'];
+    $created_time = $_POST['created_time'];
+    
 
     $image_name = $_FILES['filename']['name'];
     $image_tmp  = $_FILES['filename']['tmp_name'];
 
 
-    $queryInsert = "INSERT INTO book(title,description,rating,author,filename)
-                     VALUE ('$title','$description','$rating','$author','$image_name')";
+    $queryInsert = "INSERT INTO book(title,description,rating,author,created_time,filename)
+                     VALUE ('$title','$description','$rating','$author','$created_time','$image_name')";
 
     move_uploaded_file($image_tmp,'img/'.$image_name);    
 
